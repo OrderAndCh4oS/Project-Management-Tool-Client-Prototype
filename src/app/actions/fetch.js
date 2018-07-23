@@ -1,4 +1,4 @@
-const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) => (values, formik) => (dispatch, getState) => {
+const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) => (values, handleErrors = null) => (dispatch, getState) => {
     if (isFetching(getState(), values)) {
         return Promise.resolve();
     }
@@ -25,21 +25,20 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
                             values,
                             errors
                         });
-                        formik.setSubmitting(false);
-                        formik.resetForm();
-                        formik.setErrors(errors);
+                        if (typeof handleErrors === 'function') {
+                            handleErrors(errors);
+                        }
                     });
                     break;
                 default:
                     dispatch({
                         type: FAILURE,
                         values,
-                        message: 'Response status code not handled'
+                        error: 'Response status code not handled'
                     });
-                    formik.setSubmitting(false);
-                    formik.resetForm();
-                    formik.setErrors({general: 'Response status code not handled'});
-
+                    if (typeof handleErrors === 'function') {
+                        handleErrors({general: 'Response status code not handled'});
+                    }
             }
             return response;
         },
@@ -47,11 +46,11 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
             dispatch({
                 type: FAILURE,
                 values: values,
-                message: error.message || 'Something went wrong'
+                error: error.message || 'Something went wrong'
             });
-            formik.setSubmitting(false);
-            formik.resetForm();
-            formik.setErrors({general: error.message || 'Something went wrong'});
+            if (typeof handleErrors === 'function') {
+                handleErrors({general: error.message || 'Something went wrong'});
+            }
             return error;
         });
 };

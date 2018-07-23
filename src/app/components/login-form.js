@@ -49,7 +49,12 @@ LoginForm = withFormik({
         {setSubmitting, resetForm, setErrors, props: {fetchToken}}
     ) => {
         delete values.auth;
-        fetchToken(values, {setSubmitting, resetForm, setErrors});
+        const handleErrors = (errors) => {
+            setSubmitting(false);
+            resetForm();
+            setErrors(errors);
+        };
+        fetchToken(values, handleErrors);
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()
