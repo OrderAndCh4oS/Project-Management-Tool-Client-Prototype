@@ -21,12 +21,10 @@ const App = () => (
                     </Column>
                 </Row>
             </Container>
-            <Container>
-                <Switch>
-                    <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
-                    <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
-                </Switch>
-            </Container>
+            <Switch>
+                <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
+                <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
+            </Switch>
         </div>
     </div>
 );
