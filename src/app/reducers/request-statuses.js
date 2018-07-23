@@ -35,7 +35,6 @@ const requestStatuses = (check, {REQUEST, SUCCESS, FAILURE, INVALID = null, RESE
     const invalidRequest = (state = null, action) => {
         switch (action.type) {
             case INVALID:
-                console.log('invalid: ', action);
                 return action.errors;
             case REQUEST:
             case SUCCESS:
@@ -51,7 +50,7 @@ const requestStatuses = (check, {REQUEST, SUCCESS, FAILURE, INVALID = null, RESE
         }
         switch (action.type) {
             case FAILURE:
-                return action.errors;
+                return action.error;
             case REQUEST:
             case SUCCESS:
             case INVALID:

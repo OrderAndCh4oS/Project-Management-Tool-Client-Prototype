@@ -1,4 +1,4 @@
-const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) => (values) => (dispatch, getState) => {
+const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) => (values, formik) => (dispatch, getState) => {
     if (isFetching(getState(), values)) {
         return Promise.resolve();
     }
@@ -25,6 +25,9 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
                             values,
                             errors
                         });
+                        formik.setSubmitting(false);
+                        formik.resetForm();
+                        formik.setErrors(errors);
                     });
                     break;
                 default:
@@ -33,6 +36,10 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
                         values,
                         message: 'Response status code not handled'
                     });
+                    formik.setSubmitting(false);
+                    formik.resetForm();
+                    formik.setErrors({general: 'Response status code not handled'});
+
             }
             return response;
         },
@@ -42,6 +49,9 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
                 values: values,
                 message: error.message || 'Something went wrong'
             });
+            formik.setSubmitting(false);
+            formik.resetForm();
+            formik.setErrors({general: error.message || 'Something went wrong'});
             return error;
         });
 };

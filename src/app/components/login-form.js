@@ -8,7 +8,6 @@ import * as fromReducers from '../reducers';
 import * as Yup from 'yup';
 
 let LoginForm = ({
-                     auth: {errorMessage, isInvalid},
                      values,
                      errors,
                      touched,
@@ -16,10 +15,7 @@ let LoginForm = ({
                      handleBlur,
                      isSubmitting
                  }) => {
-    errors = isInvalid ? isInvalid : errors;
-    errors = errorMessage ? errorMessage : errors;
-    console.log('isInvalid: ', isInvalid);
-    console.log('errors: ', errors);
+    console.log(errors);
     return (
         <Form>
             <Input name="username"
@@ -41,6 +37,7 @@ let LoginForm = ({
             />
             <button type="submit" disabled={isSubmitting}>Login</button>
             <FormError error={errors.non_field_errors}/>
+            <FormError error={errors.general}/>
             {isSubmitting ? <p className={'form-action'}>Checking credentials...</p> : null}
         </Form>
     );
@@ -49,15 +46,10 @@ let LoginForm = ({
 LoginForm = withFormik({
     handleSubmit: (
         values,
-        {setSubmitting, resetForm, props: {fetchToken}}
+        {setSubmitting, resetForm, setErrors, props: {fetchToken}}
     ) => {
         delete values.auth;
-        fetchToken(values).then((response) => {
-            if (response.status !== 200) {
-                setSubmitting(false);
-                resetForm();
-            }
-        });
+        fetchToken(values, {setSubmitting, resetForm, setErrors});
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()
