@@ -15,7 +15,6 @@ let LoginForm = ({
                      handleBlur,
                      isSubmitting
                  }) => {
-    console.log(errors);
     return (
         <Form>
             <Input name="username"

@@ -8,9 +8,17 @@ const isActiveFunc = (match) => {
     return match;
 };
 
+const adminNavigation = (loggedIn) => {
+    if (loggedIn) {
+        return (
+            <NavLink strict isActive={isActiveFunc} activeClassName="active" to="/">Dashboard</NavLink>
+        );
+    }
+};
+
 let MainNavigation = ({loggedIn, logout}) => (
     <nav className="main-nav">
-        <NavLink strict isActive={isActiveFunc} activeClassName="active" to="/">Home</NavLink>
+        {adminNavigation(loggedIn)}
         {loggedIn !== null ? <button onClick={logout}>Logout</button> : <NavLink strict isActive={isActiveFunc} activeClassName="active" to="/login">Login</NavLink>}
     </nav>
 );

@@ -4,9 +4,9 @@ import {Route, Switch} from 'react-router-dom';
 import {Column, Container, Row} from './structure';
 import {Title} from './typography';
 import LoginPage from './login-page';
-import {userIsNotAuthenticated} from '../authentication';
+import {userIsAuthenticated, userIsNotAuthenticated} from '../authentication';
 import MainNavigation from './navigation/main-navigation';
-
+import DashboardPage from './dashboard-page';
 
 const App = () => (
     <div className="page-wrapper">
@@ -23,6 +23,7 @@ const App = () => (
             </Container>
             <Container>
                 <Switch>
+                    <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
                     <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
                 </Switch>
             </Container>
