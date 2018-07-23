@@ -8,7 +8,6 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
     });
     return apiCall(values).then(
         response => {
-            console.log('raw response: ', response);
             switch (response.status) {
                 case 200:
                     response.json().then((data) => {

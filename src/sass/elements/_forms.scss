@@ -130,3 +130,11 @@ p.form-error, span.form-error {
   font-style: italic;
 }
 
+p.form-action, span.form-action {
+  padding-top: $half-column-gutter;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  color: $green;
+  font-style: italic;
+}
+

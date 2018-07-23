@@ -8,6 +8,7 @@ import * as fromReducers from '../reducers';
 import * as Yup from 'yup';
 
 let LoginForm = ({
+                     auth: {errorMessage, isInvalid},
                      values,
                      errors,
                      touched,
@@ -15,6 +16,10 @@ let LoginForm = ({
                      handleBlur,
                      isSubmitting
                  }) => {
+    errors = isInvalid ? isInvalid : errors;
+    errors = errorMessage ? errorMessage : errors;
+    console.log('isInvalid: ', isInvalid);
+    console.log('errors: ', errors);
     return (
         <Form>
             <Input name="username"
@@ -35,8 +40,8 @@ let LoginForm = ({
                    error={touched.password && errors.password}
             />
             <button type="submit" disabled={isSubmitting}>Login</button>
-            <FormError error={errors.general}/>
-            {isSubmitting ? <p>Checking credentials...</p> : null}
+            <FormError error={errors.non_field_errors}/>
+            {isSubmitting ? <p className={'form-action'}>Checking credentials...</p> : null}
         </Form>
     );
 };
@@ -44,15 +49,13 @@ let LoginForm = ({
 LoginForm = withFormik({
     handleSubmit: (
         values,
-        {setSubmitting, resetForm, setErrors, props: {fetchToken}}
+        {setSubmitting, resetForm, props: {fetchToken}}
     ) => {
         delete values.auth;
         fetchToken(values).then((response) => {
-            console.log('last: ', response);
             if (response.status !== 200) {
                 setSubmitting(false);
                 resetForm();
-                setErrors({general: 'Invalid credentials!'});
             }
         });
     },
