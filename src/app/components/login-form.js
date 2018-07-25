@@ -53,7 +53,7 @@ LoginForm = withFormik({
             resetForm();
             setErrors(errors);
         };
-        fetchToken(values, handleErrors);
+        fetchToken(values, {handleErrors});
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()
@@ -67,9 +67,9 @@ const mapStateToLoginFormProps = (state) => {
     return {
         auth: {
             loginForm: fromReducers.getAuth(state),
-            isFetching: fromReducers.isFetchingAuth(state),
-            isInvalid: fromReducers.authInvalidRequest(state),
-            errorMessage: fromReducers.authErrorMessage(state)
+            isFetching: fromReducers.getIsFetchingAuth(state),
+            isInvalid: fromReducers.getAuthInvalidRequest(state),
+            errorMessage: fromReducers.getAuthErrorMessage(state)
         }
     };
 };

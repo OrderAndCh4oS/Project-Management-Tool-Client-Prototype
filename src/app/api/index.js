@@ -2,6 +2,9 @@
 
 const baseURL = 'http://localhost:8000';
 
+const listValues = (params, key) => Array.isArray(params[key]) ? params[key].join(',') : params[key];
+const createParams = (params) => Object.keys(params).map(key => key + '=' + listValues(params, key)).join('&');
+
 
 export const fetchToken = ({username, password}) => {
     return fetch(baseURL + '/api-token-auth/', {
@@ -11,6 +14,16 @@ export const fetchToken = ({username, password}) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({username: username, password: password})
+    });
+};
+
+export const fetchProjects = (values, token, params = null) => {
+    params = params ? '?' + createParams(params) : '';
+    return fetch(baseURL + '/project/' + params, {
+        method: 'get',
+        headers: {
+            'Authorization': 'JWT ' + token
+        }
     });
 };
 

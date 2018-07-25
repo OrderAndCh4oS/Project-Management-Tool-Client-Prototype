@@ -1,10 +1,10 @@
 import * as types from './types';
 import * as fromReducers from '../reducers';
 import * as apiCalls from '../api';
+import * as schema from '../schema';
 import fetchData from './fetch';
 
+const fetchToken = fetchData(apiCalls.fetchToken, fromReducers.getIsFetchingAuth, types.CREDENTIALS_FETCH);
+const fetchProjects = fetchData(apiCalls.fetchProjects, fromReducers.getProjectIsFetching, types.PROJECTS_FETCH, schema.arrayOfProjects);
 
-const fetchToken = fetchData(apiCalls.fetchToken, fromReducers.isFetchingAuth, types.CREDENTIALS_FETCH);
-
-
-export {fetchToken};
+export {fetchToken, fetchProjects};

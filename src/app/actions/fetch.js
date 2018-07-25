@@ -1,4 +1,6 @@
-const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) => (values, handleErrors = null) => (dispatch, getState) => {
+import {normalize} from 'normalizr';
+
+const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) => (values, {params = null, handleErrors = null}) => (dispatch, getState) => {
     if (isFetching(getState(), values)) {
         return Promise.resolve();
     }
@@ -6,7 +8,11 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
         type: REQUEST,
         values: values
     });
-    return apiCall(values).then(
+    let token = null;
+    if (getState().app.auth.hasOwnProperty('data') && getState().app.auth.data !== null) {
+        token = getState().app.auth.data.token;
+    }
+    return apiCall(values, token, params).then(
         response => {
             switch (response.status) {
                 case 200:
@@ -14,7 +20,7 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}) =>
                         dispatch({
                             type: SUCCESS,
                             values,
-                            data
+                            data: schema ? normalize(data, schema) : data
                         });
                     });
                     break;
