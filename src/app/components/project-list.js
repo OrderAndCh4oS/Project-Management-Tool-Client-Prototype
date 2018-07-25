@@ -32,8 +32,8 @@ class ProjectList extends Component {
         return (
             <div className={'project-list'}>
                 <Title tag='h2'>Project List</Title>
-                {projects.map((poll) => (
-                    <ProjectDetail key={poll.id} {...poll}/>
+                {projects.map((project) => (
+                    <ProjectDetail key={project.id} {...project}/>
                 ))}
             </div>
         );

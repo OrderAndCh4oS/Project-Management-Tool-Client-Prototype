@@ -1,10 +1,12 @@
 import {combineReducers} from 'redux';
 import auth, * as fromAuth from './auth';
 import projects, * as fromProjects from './projects';
+import jobs, * as fromJobs from './jobs';
 
 const app = combineReducers({
     auth,
-    projects
+    projects,
+    jobs
 });
 
 const rootReducer = combineReducers({
@@ -23,3 +25,8 @@ export const getProject = (state) => fromProjects.getProject(state.app);
 export const getProjects = (state) => fromProjects.getProjects(state.app);
 export const getProjectIsFetching = (state) => fromProjects.getIsFetching(state.app);
 export const getProjectFetchErrorMessage = (state) => fromProjects.getFetchErrorMessage(state.app);
+
+export const getJob = (state) => fromJobs.getJob(state.app);
+export const getJobs = (state) => fromJobs.getJobs(state.app);
+export const getJobIsFetching = (state) => fromJobs.getIsFetching(state.app);
+export const getJobFetchErrorMessage = (state) => fromJobs.getFetchErrorMessage(state.app);

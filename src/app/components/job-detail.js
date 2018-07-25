@@ -2,9 +2,9 @@
 import React from 'react';
 import {Title} from './typography';
 
-const ProjectDetail = (props) => <div className='project-detail'>
+const JobDetail = (props) => <div className='job-detail'>
     <Title tag='h3'>{props.reference_code + ': ' + props.title}</Title>
-    <p>{props.company.name}</p>
+    <p>{props.description}</p>
 </div>;
 
-export default ProjectDetail;
+export default JobDetail;

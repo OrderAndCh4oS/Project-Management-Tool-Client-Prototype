@@ -27,6 +27,16 @@ export const fetchProjects = (values, token, params = null) => {
     });
 };
 
+export const fetchJobs = (values, token, params = null) => {
+    params = params ? '?' + createParams(params) : '';
+    return fetch(baseURL + '/job/' + params, {
+        method: 'get',
+        headers: {
+            'Authorization': 'JWT ' + token
+        }
+    });
+};
+
 // export const fetchPoll = (id, token) => {
 //     return fetch(baseURL + '/questions/' + id + '/', {
 //         headers: {

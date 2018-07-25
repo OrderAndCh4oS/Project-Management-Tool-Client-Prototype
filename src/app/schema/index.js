@@ -23,8 +23,8 @@ export const arrayOfStaff = new schema.Array(staff);
 export const user = new schema.Entity('users');
 export const arrayOfUsers = new schema.Array(user);
 
-export const todo = new schema.Entity('todos');
-export const arrayOfTodos = new schema.Array(todo);
+export const job = new schema.Entity('jobs');
+export const arrayOfJobs = new schema.Array(job);
 
 export const workDay = new schema.Entity('workDays');
 export const arrayOfWorkDays = new schema.Array(workDay);
