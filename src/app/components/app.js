@@ -7,6 +7,7 @@ import LoginPage from './login-page';
 import {userIsAuthenticated, userIsNotAuthenticated} from '../authentication';
 import MainNavigation from './navigation/main-navigation';
 import DashboardPage from './dashboard-page';
+import JobDetail from './job-detail';
 
 const App = () => (
     <div className="page-wrapper">
@@ -25,7 +26,7 @@ const App = () => (
                 <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
                 <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
                 <Route exact path="/project/:projectId" component={userIsAuthenticated(DashboardPage)}/>
-                <Route exact path="/job/:jobId" component={userIsAuthenticated(DashboardPage)}/>
+                <Route exact path="/job/:jobId" component={userIsAuthenticated(JobDetail)}/>
             </Switch>
         </div>
     </div>

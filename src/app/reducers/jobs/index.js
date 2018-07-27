@@ -13,4 +13,6 @@ export const getJobs = (state) => {
 export const getIds = (state) => fromList.getIds(state.jobs);
 export const getIsFetching = (state) => fromList.getIsFetching(state.jobs);
 export const getFetchErrorMessage = (state) => fromList.getFetchErrorMessage(state.jobs);
-export const getJob = (state) => fromById.getJob(state.jobs);
+export const getIsFetchingSingle = (state) => fromList.getIsFetchingSingle(state.jobs);
+export const getFetchSingleErrorMessage = (state) => fromList.getFetchSingleErrorMessage(state.jobs);
+export const getJob = (state, id) => fromById.getJob(state.jobs, id);

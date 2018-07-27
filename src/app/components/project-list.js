@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Title} from './elements/typography';
 import FetchError from './elements/fetch-error';
-import ProjectDetail from './project-detail';
+import ProjectListItem from './project-list-item';
 import * as actions from '../actions';
 import * as reducers from '../reducers';
 
@@ -15,7 +15,7 @@ class ProjectList extends Component {
 
     fetchData() {
         const {fetchProjects} = this.props;
-        fetchProjects(null, {params: {with: 'company'}}).then(() => console.log('done!'));
+        fetchProjects({params: {with: 'company'}}).then(() => console.log('done!'));
     }
 
     render() {
@@ -33,7 +33,7 @@ class ProjectList extends Component {
             <div className={'project-list'}>
                 <Title tag='h2'>Project List</Title>
                 {projects.map((project) => (
-                    <ProjectDetail key={project.id} {...project}/>
+                    <ProjectListItem key={project.id} {...project}/>
                 ))}
             </div>
         );
@@ -43,9 +43,8 @@ class ProjectList extends Component {
 const mapStateToProjectsListProps = (state) => {
     return {
         projects: reducers.getProjects(state),
-        token: reducers.getToken(state),
-        isFetching: reducers.getProjectIsFetching(state),
-        errorMessage: reducers.getProjectFetchErrorMessage(state)
+        isFetching: reducers.getProjectsIsFetching(state),
+        errorMessage: reducers.getProjectsFetchErrorMessage(state)
     };
 };
 

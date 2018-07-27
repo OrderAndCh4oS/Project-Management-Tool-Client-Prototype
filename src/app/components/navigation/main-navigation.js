@@ -32,7 +32,7 @@ let MainNavigation = ({loggedIn, logout}) => (
 MainNavigation = connect(
     state => {
         return {
-            loggedIn: state.app.auth.data
+            loggedIn: state.app.auth.isAuthenticated
         };
     },
     dispatch => {

@@ -53,7 +53,7 @@ LoginForm = withFormik({
             resetForm();
             setErrors(errors);
         };
-        fetchToken(values, {handleErrors});
+        fetchToken({values, handleErrors});
     },
     validationSchema: Yup.object().shape({
         username: Yup.string()

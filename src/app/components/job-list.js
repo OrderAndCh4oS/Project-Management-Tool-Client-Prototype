@@ -5,7 +5,7 @@ import {Title} from './elements/typography';
 import FetchError from './elements/fetch-error';
 import * as actions from '../actions';
 import * as reducers from '../reducers';
-import JobDetail from './job-detail';
+import JobListItem from './job-list-item';
 
 class JobList extends Component {
 
@@ -15,7 +15,7 @@ class JobList extends Component {
 
     fetchData() {
         const {fetchJobs} = this.props;
-        fetchJobs(null, {}).then(() => console.log('done!'));
+        fetchJobs({}).then(() => console.log('done!'));
     }
 
     render() {
@@ -32,7 +32,7 @@ class JobList extends Component {
         return (
             <div className={'job-list'}>
                 <Title tag='h2'>My Job List</Title>
-                {jobs.map((job) => <JobDetail key={job.id} {...job}/>)}
+                {jobs.map((job) => <JobListItem key={job.id} {...job}/>)}
             </div>
         );
     }
@@ -41,9 +41,8 @@ class JobList extends Component {
 const mapStateToJobsListProps = (state) => {
     return {
         jobs: reducers.getJobs(state),
-        token: reducers.getToken(state),
-        isFetching: reducers.getJobIsFetching(state),
-        errorMessage: reducers.getJobFetchErrorMessage(state)
+        isFetching: reducers.getJobsIsFetching(state),
+        errorMessage: reducers.getJobsFetchErrorMessage(state)
     };
 };
 

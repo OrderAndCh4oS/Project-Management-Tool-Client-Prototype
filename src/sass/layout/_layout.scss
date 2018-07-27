@@ -82,10 +82,10 @@ canvas {
   }
 }
 
-.list-detail {
-  padding-bottom: $half-column-gutter;
+.list-item {
+  padding-bottom: $column-gutter;
   padding-top: $half-column-gutter;
-  border-bottom: $lighter-grey;
+  border-bottom: $light-grey $border-stroke $border-width;
 }
 
 @media #{$small-up} {
