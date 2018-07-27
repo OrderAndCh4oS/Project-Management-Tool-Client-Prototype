@@ -82,10 +82,10 @@ canvas {
   }
 }
 
-.reset-3d {
-  position: relative;
-  bottom: remCalc(60);
-  right: remCalc(-20);
+.list-detail {
+  padding-bottom: $half-column-gutter;
+  padding-top: $half-column-gutter;
+  border-bottom: $lighter-grey;
 }
 
 @media #{$small-up} {

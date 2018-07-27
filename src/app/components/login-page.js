@@ -1,6 +1,6 @@
 import React from 'react';
-import {Pretitle, Title} from './typography';
-import {Column} from './structure';
+import {Pretitle, Title} from './elements/typography';
+import {Column} from './elements/structure';
 import LoginForm from './login-form';
 
 const LoginPage = () => (

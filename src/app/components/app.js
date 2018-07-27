@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {Column, Container, Row} from './structure';
-import {Title} from './typography';
+import {Column, Container, Row} from './elements/structure';
+import {Title} from './elements/typography';
 import LoginPage from './login-page';
 import {userIsAuthenticated, userIsNotAuthenticated} from '../authentication';
 import MainNavigation from './navigation/main-navigation';
@@ -22,8 +22,10 @@ const App = () => (
                 </Row>
             </Container>
             <Switch>
-                <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
                 <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
+                <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
+                <Route exact path="/project/:projectId" component={userIsAuthenticated(DashboardPage)}/>
+                <Route exact path="/job/:jobId" component={userIsAuthenticated(DashboardPage)}/>
             </Switch>
         </div>
     </div>

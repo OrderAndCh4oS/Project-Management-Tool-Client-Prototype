@@ -1,8 +1,8 @@
 /* eslint-disable no-class-assign,react/prop-types */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Title} from './typography';
-import FetchError from './fetch-error';
+import {Title} from './elements/typography';
+import FetchError from './elements/fetch-error';
 import * as actions from '../actions';
 import * as reducers from '../reducers';
 import JobDetail from './job-detail';

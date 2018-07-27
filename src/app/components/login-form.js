@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types,indent */
 import React from 'react';
-import {FormError, Input} from './form-elements';
+import {FormError, Input} from './elements/form';
 import {Form, withFormik} from 'formik';
 import {connect} from 'react-redux';
 import * as actions from '../actions';

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Pretitle, Title} from './typography';
-import {Column, Container, Row} from './structure';
+import {Pretitle, Title} from './elements/typography';
+import {Column, Container, Row} from './elements/structure';
 import ProjectList from './project-list';
 import JobList from './job-list';
 
