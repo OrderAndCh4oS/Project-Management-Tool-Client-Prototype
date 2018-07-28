@@ -20,10 +20,12 @@ export const getIsFetchingAuth = (state) => fromAuth.getIsFetching(state.app.aut
 export const getAuthErrorMessage = (state) => fromAuth.getErrorMessage(state.app.auth);
 export const getAuthInvalidRequest = (state) => fromAuth.getInvalidRequest(state.app.auth);
 
-export const getProject = (state) => fromProjects.getProject(state.app);
+export const getProject = (state, id) => fromProjects.getProject(state.app, id);
 export const getProjects = (state) => fromProjects.getProjects(state.app);
 export const getProjectsIsFetching = (state) => fromProjects.getIsFetching(state.app);
 export const getProjectsFetchErrorMessage = (state) => fromProjects.getFetchErrorMessage(state.app);
+export const getProjectIsFetching = (state) => fromProjects.getIsFetchingSingle(state.app);
+export const getProjectFetchErrorMessage = (state) => fromProjects.getFetchSingleErrorMessage(state.app);
 
 export const getJob = (state, id) => fromJobs.getJob(state.app, id);
 export const getJobs = (state) => fromJobs.getJobs(state.app);

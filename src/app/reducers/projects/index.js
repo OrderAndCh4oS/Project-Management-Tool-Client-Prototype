@@ -13,4 +13,6 @@ export const getProjects = (state) => {
 export const getIds = (state) => fromList.getIds(state.projects);
 export const getIsFetching = (state) => fromList.getIsFetching(state.projects);
 export const getFetchErrorMessage = (state) => fromList.getFetchErrorMessage(state.projects);
-export const getProject = (state) => fromById.getProject(state.projects);
+export const getIsFetchingSingle = (state) => fromList.getIsFetchingSingle(state.projects);
+export const getFetchSingleErrorMessage = (state) => fromList.getFetchSingleErrorMessage(state.projects);
+export const getProject = (state, id) => fromById.getProject(state.projects, id);

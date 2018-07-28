@@ -1,13 +1,16 @@
 import * as types from '../../actions/types';
 
 const byId = (state = {}, action) => {
-    if (action.type === types.PROJECTS_FETCH.SUCCESS && action.data) {
-        return {
-            ...state,
-            ...action.data.entities.projects
-        };
+    switch (action.type) {
+        case types.PROJECTS_FETCH.SUCCESS:
+        case types.PROJECT_FETCH.SUCCESS:
+            return {
+                ...state,
+                ...action.data.entities.projects
+            };
+        default:
+            return state;
     }
-    return state;
 };
 
 export default byId;
