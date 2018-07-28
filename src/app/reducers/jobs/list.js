@@ -5,8 +5,9 @@ import requestStatuses from '../request-statuses';
 const ids = (state = [], action) => {
     switch (action.type) {
         case types.JOBS_FETCH.SUCCESS:
-        case types.JOB_FETCH.SUCCESS:
             return action.data.result;
+        case types.JOB_FETCH.SUCCESS:
+            return [action.data.result];
         default:
             return state;
     }

@@ -10,7 +10,10 @@ const configureStore = () => {
         middleware.push(createLogger());
     }
 
-    return createStore(rootReducer, applyMiddleware(...middleware));
+    const token = !!localStorage.getItem('TOKEN');
+    const initialStore = {app: {auth: {isAuthenticated: token}}};
+
+    return createStore(rootReducer, initialStore, applyMiddleware(...middleware));
 };
 
 export default configureStore;

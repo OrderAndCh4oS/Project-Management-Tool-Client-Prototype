@@ -24,11 +24,12 @@ export const fetchProject = ({id}) => {
     return getAuthorisedFetch('/project/' + id + '/');
 };
 
+const getTokenFromLocalStorage = () => localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
 const listValues = (params, key) => Array.isArray(params[key]) ? params[key].join(',') : params[key];
 const createParams = (params) => Object.keys(params).map(key => key + '=' + listValues(params, key)).join('&');
 
 const getAuthorisedFetch = function (endpoint) {
-    let token = localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
+    let token = getTokenFromLocalStorage();
     return fetch(baseURL + endpoint, {
         method: 'get',
         headers: {
@@ -47,9 +48,10 @@ const postUnauthorisedFetch = function (endpoint, data) {
         body: JSON.stringify(data)
     });
 };
+
 // eslint-disable-next-line no-unused-vars
 const postAuthorisedFetch = function (endpoint, data) {
-    let token = localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
+    let token = getTokenFromLocalStorage();
     return fetch(baseURL + endpoint, {
         method: 'post',
         headers: {

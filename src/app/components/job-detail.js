@@ -20,10 +20,10 @@ class JobDetail extends Component {
 
     render() {
         const {job, errorMessage, isFetching} = this.props;
-        if (isFetching && !job.length) {
+        if (isFetching || !job) {
             return <p>Loading...</p>;
         }
-        if (errorMessage && !job.length) {
+        if (errorMessage && !job) {
             return <FetchError
                 message={errorMessage}
                 onRetry={() => this.fetchData()}

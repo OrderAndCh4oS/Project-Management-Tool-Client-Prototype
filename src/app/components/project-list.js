@@ -20,7 +20,7 @@ class ProjectList extends Component {
 
     render() {
         const {projects, errorMessage, isFetching} = this.props;
-        if (isFetching && !projects.length) {
+        if (isFetching || !projects.length) {
             return <p>Loading...</p>;
         }
         if (errorMessage && !projects.length) {

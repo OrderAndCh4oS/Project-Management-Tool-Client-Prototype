@@ -20,7 +20,7 @@ class JobList extends Component {
 
     render() {
         const {jobs, errorMessage, isFetching} = this.props;
-        if (isFetching && !jobs.length) {
+        if (isFetching || !jobs.length) {
             return <p>Loading...</p>;
         }
         if (errorMessage && !jobs.length) {

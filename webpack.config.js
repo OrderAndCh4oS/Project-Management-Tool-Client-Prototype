@@ -26,6 +26,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, distDir),
+        publicPath: '/',
         filename: '[name].[hash].js'
     },
     devtool: 'source-map',
