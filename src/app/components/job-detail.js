@@ -1,11 +1,12 @@
 /* eslint-disable no-class-assign,react/prop-types */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Title} from './elements/typography';
+import {Date, Text, Title} from './elements/typography';
 import FetchError from './elements/fetch-error';
 import * as actions from '../actions';
 import * as reducers from '../reducers';
 import {withRouter} from 'react-router-dom';
+import {Link} from './elements/button';
 
 class JobDetail extends Component {
 
@@ -32,6 +33,11 @@ class JobDetail extends Component {
         return (
             <div className={'job-list'}>
                 <Title tag='h2'>{job.reference_code + ': ' + job.title}</Title>
+                <Text>Created at: <Date date={job.created_at}/></Text>
+                <Text>Project: <Link to={'/project/' + job.project__id}>{job.project__title}</Link></Text>
+                <Text>Description: {job.description}</Text>
+                <Text>Estimated Time: {job.estimated_time} / Logged Time: {job.logged_time}</Text>
+                <Text>Status: {job.status__title} / Deadline: <Date date={job.deadline} format={'Do MMMM YYYY'}/></Text>
             </div>
         );
     }

@@ -48,10 +48,9 @@ p {
 a, a:visited {
   color: $link-color;
   font-weight: $font-weight-regular;
-  text-transform: uppercase;
   letter-spacing: 1px;
   outline: 0;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover, a:focus, a.active {

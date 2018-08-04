@@ -15,7 +15,7 @@ class JobList extends Component {
 
     fetchData() {
         const {fetchJobs} = this.props;
-        fetchJobs({}).then(() => console.log('done!'));
+        fetchJobs({params: {with: ['project', 'company']}}).then(() => console.log('done!'));
     }
 
     render() {

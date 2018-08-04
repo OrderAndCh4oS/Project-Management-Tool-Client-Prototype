@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export const Title = ({tag = 'h1', className = '', children, ...rest}) => {
     const HeadingTag = `${tag}`;
@@ -33,5 +34,16 @@ export const Text = ({className = '', children, ...rest}) =>
 
 Text.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.string.isRequired
+    children: PropTypes.any.isRequired
+};
+
+export const Date = ({className = '', date = '', format = 'dddd, MMMM Do YYYY, h:mm:ssa', ...rest}) => {
+    const formattedDate = moment(date, 'YYYY-MM-DDTkk:mm:ss.SSSSSSZ').format(format);
+    return <span className={'text date' + className} {...rest}>{formattedDate}</span>;
+};
+
+Date.propTypes = {
+    date: PropTypes.string.isRequired,
+    format: PropTypes.string,
+    className: PropTypes.string
 };

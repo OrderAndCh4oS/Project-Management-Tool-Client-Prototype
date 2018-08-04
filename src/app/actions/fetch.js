@@ -1,4 +1,5 @@
 import {normalize} from 'normalizr';
+import {CREDENTIALS_LOGOUT} from './types';
 
 const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) =>
     ({values = null, params = null, id = null, handleErrors = null}) => (dispatch, getState) => {
@@ -11,12 +12,16 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, sc
         });
         return apiCall({values, params, id}).then(
             response => {
+                console.log(response);
                 switch (response.status) {
                     case 200:
                         handleSuccessfulResponse(response, dispatch, SUCCESS, values, schema);
                         break;
                     case 400:
                         handleInvalidResponse(response, dispatch, INVALID, values, handleErrors);
+                        break;
+                    case 401:
+                        handleUnauthorisedResponse(response, dispatch);
                         break;
                     default:
                         handleUnknownResponse(dispatch, FAILURE, values, handleErrors);
@@ -31,6 +36,7 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, sc
 
 const handleSuccessfulResponse = (response, dispatch, SUCCESS, values, schema) => {
     response.json().then((data) => {
+        data = data.hasOwnProperty('results') ? data.results : data;
         dispatch({
             type: SUCCESS,
             values,
@@ -69,6 +75,11 @@ const handleErrorResponse = (dispatch, FAILURE, values, error, handleErrors) => 
     if (typeof handleErrors === 'function') {
         handleErrors({general: error.message || 'Something went wrong'});
     }
+};
+const handleUnauthorisedResponse = (response, dispatch) => {
+    dispatch({
+        type: CREDENTIALS_LOGOUT
+    });
 };
 
 export default fetchData;
