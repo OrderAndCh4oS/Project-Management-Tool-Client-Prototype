@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import * as types from '../../actions/types';
 import requestStatuses from '../request-statuses';
 
@@ -22,4 +22,5 @@ export const getIds = (state) => state.list.ids;
 export const getIsFetching = (state) => state.list.fetchManyRequest.isFetching;
 export const getFetchErrorMessage = (state) => state.list.fetchManyRequest.errorMessage;
 export const getIsFetchingSingle = (state) => state.list.fetchSingleRequest.isFetching;
+export const getFetchSingleInvalidRequest = (state) => state.list.fetchSingleRequest.invalidRequest;
 export const getFetchSingleErrorMessage = (state) => state.list.fetchSingleRequest.errorMessage;

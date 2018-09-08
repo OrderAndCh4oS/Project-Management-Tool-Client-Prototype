@@ -1,5 +1,5 @@
-import {normalize} from 'normalizr';
-import {CREDENTIALS_LOGOUT} from './types';
+import { normalize } from 'normalizr';
+import { CREDENTIALS_LOGOUT } from './types';
 
 const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) =>
     ({values = null, params = null, id = null, handleErrors = null}) => (dispatch, getState) => {
@@ -12,9 +12,9 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, sc
         });
         return apiCall({values, params, id}).then(
             response => {
-                console.log(response);
                 switch (response.status) {
                     case 200:
+                    case 201:
                         handleSuccessfulResponse(response, dispatch, SUCCESS, values, schema);
                         break;
                     case 400:

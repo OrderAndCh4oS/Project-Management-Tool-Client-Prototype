@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import auth, * as fromAuth from './auth';
 import projects, * as fromProjects from './projects';
 import jobs, * as fromJobs from './jobs';
@@ -25,6 +25,8 @@ export const getProjects = (state) => fromProjects.getProjects(state.app);
 export const getProjectsIsFetching = (state) => fromProjects.getIsFetching(state.app);
 export const getProjectsFetchErrorMessage = (state) => fromProjects.getFetchErrorMessage(state.app);
 export const getProjectIsFetching = (state) => fromProjects.getIsFetchingSingle(state.app);
+export const getProjectFetchInvalidRequest = (state) => fromProjects.getFetchSingleInvalidRequest(
+    state.app);
 export const getProjectFetchErrorMessage = (state) => fromProjects.getFetchSingleErrorMessage(state.app);
 
 export const getJob = (state, id) => fromJobs.getJob(state.app, id);

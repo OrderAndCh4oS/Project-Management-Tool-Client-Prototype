@@ -9,6 +9,15 @@ const fetchProjects = fetchData(apiCalls.fetchProjects, fromReducers.getProjects
 const fetchJobs = fetchData(apiCalls.fetchJobs, fromReducers.getJobsIsFetching, types.JOBS_FETCH, schema.arrayOfJobs);
 
 const fetchProject = fetchData(apiCalls.fetchProject, fromReducers.getProjectIsFetching, types.PROJECT_FETCH, schema.project);
+const postProject = fetchData(apiCalls.postProject,
+    fromReducers.getProjectIsFetching, types.PROJECT_FETCH, schema.project);
 const fetchJob = fetchData(apiCalls.fetchJob, fromReducers.getJobIsFetching, types.JOB_FETCH, schema.job);
 
-export {fetchToken, fetchProjects, fetchJobs, fetchJob, fetchProject};
+export {
+    fetchToken,
+    fetchProjects,
+    fetchJobs,
+    fetchJob,
+    fetchProject,
+    postProject,
+};

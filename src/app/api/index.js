@@ -3,7 +3,7 @@
 const baseURL = 'http://localhost:8000';
 
 export const fetchToken = ({values: {username, password}}) => {
-    return postUnauthorisedFetch('/api-token-auth/', {username: username, password: password});
+    return postUnauthorisedFetch('/api-token-auth/', {username, password});
 };
 
 export const fetchProjects = ({params}) => {
@@ -22,6 +22,10 @@ export const fetchJob = ({id}) => {
 
 export const fetchProject = ({id}) => {
     return getAuthorisedFetch('/project/' + id + '/');
+};
+
+export const postProject = ({values}) => {
+    return postAuthorisedFetch('/project/', values);
 };
 
 const getTokenFromLocalStorage = () => localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;

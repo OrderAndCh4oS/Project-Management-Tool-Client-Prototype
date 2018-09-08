@@ -17,11 +17,12 @@ module.exports = {
         "react"
     ],
     "rules": {
+        'react/prop-types': 'off',
         'no-class-assign': 2,
         'no-unused-vars': 'warn',
         'react/forbid-prop-types': 'off',
         'indent': [
-            'error',
+            'warn',
             4,
             {
                 'SwitchCase': 1,
