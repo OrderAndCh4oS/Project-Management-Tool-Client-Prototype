@@ -7,7 +7,7 @@ const ids = (state = [], action) => {
         case types.PROJECTS_FETCH.SUCCESS:
             return action.data.result;
         case types.PROJECT_FETCH.SUCCESS:
-            return [action.data.result];
+            return [action.data.result, ...state];
         default:
             return state;
     }

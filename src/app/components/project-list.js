@@ -16,7 +16,8 @@ class ProjectList extends Component {
 
     fetchData() {
         const {fetchProjects} = this.props;
-        fetchProjects({params: {with: 'company'}}).then(() => console.log('done!'));
+        fetchProjects({params: {with: 'company', ordering: '-created_at'}})
+            .then(() => console.log('done!'));
     }
 
     render() {

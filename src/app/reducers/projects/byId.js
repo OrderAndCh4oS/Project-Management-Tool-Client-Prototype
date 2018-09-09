@@ -5,8 +5,8 @@ const byId = (state = {}, action) => {
         case types.PROJECTS_FETCH.SUCCESS:
         case types.PROJECT_FETCH.SUCCESS:
             return {
+                ...action.data.entities.projects,
                 ...state,
-                ...action.data.entities.projects
             };
         default:
             return state;

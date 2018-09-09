@@ -51,6 +51,8 @@ ProjectForm = withFormik({
             setErrors(errors);
         };
         postProject({values, handleErrors});
+        setSubmitting(false);
+        resetForm();
     },
     validationSchema: Yup.object().shape({
         reference_code: Yup.string()
