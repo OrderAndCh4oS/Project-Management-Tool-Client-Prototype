@@ -21,6 +21,8 @@ export const getAuthErrorMessage = (state) => fromAuth.getErrorMessage(state.app
 export const getAuthInvalidRequest = (state) => fromAuth.getInvalidRequest(state.app.auth);
 
 export const getProject = (state, id) => fromProjects.getProject(state.app, id);
+export const getProjectPagination = (state) => fromProjects.getPagination(
+    state.app);
 export const getProjects = (state) => fromProjects.getProjects(state.app);
 export const getProjectsIsFetching = (state) => fromProjects.getIsFetching(state.app);
 export const getProjectsFetchErrorMessage = (state) => fromProjects.getFetchErrorMessage(state.app);

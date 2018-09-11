@@ -2,7 +2,8 @@ import { normalize } from 'normalizr';
 import { CREDENTIALS_LOGOUT } from './types';
 
 const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) =>
-    ({values = null, params = null, id = null, handleErrors = null}) => (dispatch, getState) => {
+    ({values = null, params = null, id = null, handleErrors = null, url = null}) => (
+        dispatch, getState) => {
         if (isFetching(getState(), values)) {
             return Promise.resolve();
         }
@@ -10,7 +11,7 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, sc
             type: REQUEST,
             values: values
         });
-        return apiCall({values, params, id}).then(
+        return apiCall({values, params, id, url}).then(
             response => {
                 switch (response.status) {
                     case 200:
@@ -34,13 +35,30 @@ const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, sc
             });
     };
 
+const makePagination = (response) => {
+    if(response.hasOwnProperty('count') && response.count !== null) {
+        const pagination = {count: response.count};
+        pagination.next = response.next ? response.next : null;
+        pagination.prev = response.previous ? response.previous : null;
+        return pagination;
+    }
+
+    return null;
+};
+
+function makeData(data, schema) {
+    data = data.hasOwnProperty('results') ? data.results : data;
+    data = schema ? normalize(data, schema) : data;
+    return data;
+}
+
 const handleSuccessfulResponse = (response, dispatch, SUCCESS, values, schema) => {
     response.json().then((data) => {
-        data = data.hasOwnProperty('results') ? data.results : data;
         dispatch({
             type: SUCCESS,
             values,
-            data: schema ? normalize(data, schema) : data
+            data: makeData(data, schema),
+            pagination: makePagination(data),
         });
     });
 };

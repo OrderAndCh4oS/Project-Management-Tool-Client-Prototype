@@ -12,6 +12,7 @@ export const getProjects = (state) => {
 };
 
 export const getIds = (state) => fromList.getIds(state.projects);
+export const getPagination = (state) => fromList.getPagination(state.projects);
 export const getIsFetching = (state) => fromList.getIsFetching(state.projects);
 export const getFetchErrorMessage = (state) => fromList.getFetchErrorMessage(
     state.projects);

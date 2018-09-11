@@ -28,13 +28,18 @@ export const postProject = ({values}) => {
     return postAuthorisedFetch('/project/', values);
 };
 
+export const paginate = ({url}) => {
+    return getAuthorisedFetch(url, false);
+};
+
 const getTokenFromLocalStorage = () => localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
 const listValues = (params, key) => Array.isArray(params[key]) ? params[key].join(',') : params[key];
 const createParams = (params) => Object.keys(params).map(key => key + '=' + listValues(params, key)).join('&');
 
-const getAuthorisedFetch = function (endpoint) {
+const getAuthorisedFetch = function(endpoint, withBase = true) {
     let token = getTokenFromLocalStorage();
-    return fetch(baseURL + endpoint, {
+    const url = withBase ? baseURL + endpoint : endpoint;
+    return fetch(url, {
         method: 'get',
         headers: {
             'Authorization': 'JWT ' + token
@@ -42,8 +47,9 @@ const getAuthorisedFetch = function (endpoint) {
     });
 };
 
-const postUnauthorisedFetch = function (endpoint, data) {
-    return fetch(baseURL + endpoint, {
+const postUnauthorisedFetch = function(endpoint, data, withBase = true) {
+    const url = withBase ? baseURL + endpoint : endpoint;
+    return fetch(url, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -54,9 +60,10 @@ const postUnauthorisedFetch = function (endpoint, data) {
 };
 
 // eslint-disable-next-line no-unused-vars
-const postAuthorisedFetch = function (endpoint, data) {
+const postAuthorisedFetch = function(endpoint, data, withBase = true) {
     let token = getTokenFromLocalStorage();
-    return fetch(baseURL + endpoint, {
+    const url = withBase ? baseURL + endpoint : endpoint;
+    return fetch(url, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
