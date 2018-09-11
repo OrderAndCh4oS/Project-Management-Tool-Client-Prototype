@@ -6,9 +6,7 @@ import FetchError from './elements/fetch-error';
 import ProjectListItem from './project-list-item';
 import * as actions from '../actions';
 import * as reducers from '../reducers';
-import ProjectForm from './project-form';
-import { Button } from './elements/button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome/index.es';
+import Pagination from './elements/pagination';
 
 class ProjectList extends Component {
 
@@ -22,18 +20,8 @@ class ProjectList extends Component {
             .then(() => console.log('done!'));
     }
 
-    next = () => {
-        const {paginateProjects, pagination} = this.props;
-        paginateProjects({url: pagination.next});
-    };
-
-    prev = () => {
-        const {paginateProjects, pagination} = this.props;
-        paginateProjects({url: pagination.prev});
-    };
-
     render() {
-        const {projects, errorMessage, isFetching, pagination} = this.props;
+        const {projects, errorMessage, isFetching, pagination, paginateProjects} = this.props;
         if(isFetching || !projects.length) {
             return <p>Loading...</p>;
         }
@@ -42,28 +30,13 @@ class ProjectList extends Component {
                                onRetry={() => this.fetchData()}/>;
         }
         return (
-            <div className={'project-list'}>
+            <div className='project-list'>
                 <Title tag='h2'>Project List</Title>
-                <ProjectForm/>
                 {projects.map((project) => (
                     <ProjectListItem key={project.id} {...project}/>
                 ))}
-                <div className='pagination'>
-                    {pagination.prev
-                        ? <Button onClick={this.prev}
-                                  iconRight={<FontAwesomeIcon
-                                      icon={['far', 'arrow-left']}/>}>
-                            Prev
-                        </Button>
-                        : null}
-                    {pagination.next
-                        ? <Button onClick={this.next}
-                                  iconRight={<FontAwesomeIcon
-                                      icon={['far', 'arrow-right']}/>}>
-                            Next
-                        </Button>
-                        : null}
-                </div>
+                <Pagination pagination={pagination}
+                            paginate={paginateProjects}/>
             </div>
         );
     }
@@ -74,7 +47,7 @@ const mapStateToProjectsListProps = (state) => {
         projects: reducers.getProjects(state),
         isFetching: reducers.getProjectsIsFetching(state),
         errorMessage: reducers.getProjectsFetchErrorMessage(state),
-        pagination: reducers.getProjectPagination(state),
+        pagination: reducers.getProjectsPagination(state),
     };
 };
 

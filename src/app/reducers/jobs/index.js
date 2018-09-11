@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import byId, * as fromById from './byId';
 import list, * as fromList from './list';
 
@@ -11,6 +11,7 @@ export const getJobs = (state) => {
     return ids.map(id => fromById.getJob(state.jobs, id));
 };
 export const getIds = (state) => fromList.getIds(state.jobs);
+export const getPagination = (state) => fromList.getPagination(state.jobs);
 export const getIsFetching = (state) => fromList.getIsFetching(state.jobs);
 export const getFetchErrorMessage = (state) => fromList.getFetchErrorMessage(state.jobs);
 export const getIsFetchingSingle = (state) => fromList.getIsFetchingSingle(state.jobs);

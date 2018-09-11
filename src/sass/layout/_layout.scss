@@ -88,6 +88,12 @@ canvas {
   border-bottom: $light-grey $border-stroke $border-width;
 }
 
+.column-section {
+  padding-bottom: $column-gutter;
+  margin-bottom: $column-gutter;
+  border-bottom: $border;
+}
+
 @media #{$small-up} {
 
 }

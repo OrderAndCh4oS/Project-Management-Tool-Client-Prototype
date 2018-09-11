@@ -24,6 +24,10 @@ const paginateProjects = fetchData(apiCalls.paginate,
     fromReducers.getProjectsIsFetching, types.PROJECTS_FETCH,
     schema.arrayOfProjects);
 
+const paginateJobs = fetchData(apiCalls.paginate,
+    fromReducers.getJobsIsFetching, types.JOBS_FETCH,
+    schema.arrayOfJobs);
+
 export {
     fetchToken,
     fetchProjects,
@@ -32,4 +36,5 @@ export {
     fetchProject,
     postProject,
     paginateProjects,
+    paginateJobs,
 };

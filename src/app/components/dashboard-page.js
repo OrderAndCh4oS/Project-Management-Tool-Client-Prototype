@@ -1,8 +1,9 @@
 import React from 'react';
-import {Pretitle, Title} from './elements/typography';
-import {Column, Container, Row} from './elements/structure';
+import { Pretitle, Title } from './elements/typography';
+import { Column, Container, Row } from './elements/structure';
 import ProjectList from './project-list';
 import JobList from './job-list';
+import ProjectForm from './project-form';
 
 const DashboardPage = () => (
     <Container>
@@ -14,6 +15,7 @@ const DashboardPage = () => (
         </Row>
         <Row>
             <Column span={4}>
+                <ProjectForm/>
                 <ProjectList/>
             </Column>
             <Column span={8}>
