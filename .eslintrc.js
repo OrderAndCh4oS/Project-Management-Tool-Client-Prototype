@@ -22,7 +22,7 @@ module.exports = {
         'no-unused-vars': 'warn',
         'react/forbid-prop-types': 'off',
         'indent': [
-            'warn',
+            'off',
             4,
             {
                 'SwitchCase': 1,

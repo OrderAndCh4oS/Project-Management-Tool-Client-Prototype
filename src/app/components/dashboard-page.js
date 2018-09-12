@@ -1,9 +1,11 @@
 import React from 'react';
 import { Pretitle, Title } from './elements/typography';
 import { Column, Container, Row } from './elements/structure';
-import ProjectList from './project-list';
-import JobList from './job-list';
-import ProjectForm from './project-form';
+import JobList from './entities/jobs/list';
+import ProjectList from './entities/projects/list';
+import ProjectForm from './entities/projects/form';
+import CompanyList from './entities/companies/list';
+import CompanyForm from './entities/companies/form';
 
 const DashboardPage = () => (
     <Container>
@@ -11,6 +13,12 @@ const DashboardPage = () => (
             <Column>
                 <Pretitle>Welcome</Pretitle>
                 <Title>Dashboard</Title>
+            </Column>
+        </Row>
+        <Row>
+            <Column span={4}>
+                <CompanyForm/>
+                <CompanyList/>
             </Column>
         </Row>
         <Row>

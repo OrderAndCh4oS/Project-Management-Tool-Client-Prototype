@@ -1,7 +1,8 @@
 import { normalize } from 'normalizr';
-import { CREDENTIALS_LOGOUT } from './types';
+import { CREDENTIALS_LOGOUT } from '../actions/types';
 
-const fetchData = (apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) =>
+const getEntities = (
+    apiCall, isFetching, {REQUEST, SUCCESS, INVALID, FAILURE}, schema = null) =>
     ({values = null, params = null, id = null, handleErrors = null, url = null}) => (
         dispatch, getState) => {
         if (isFetching(getState(), values)) {
@@ -100,4 +101,4 @@ const handleUnauthorisedResponse = (response, dispatch) => {
     });
 };
 
-export default fetchData;
+export default getEntities;

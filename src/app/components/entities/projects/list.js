@@ -1,14 +1,14 @@
 /* eslint-disable no-class-assign,react/prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Title } from './elements/typography';
-import FetchError from './elements/fetch-error';
-import ProjectListItem from './project-list-item';
-import * as actions from '../actions';
-import * as reducers from '../reducers';
-import Pagination from './elements/pagination';
+import { Title } from '../../elements/typography';
+import FetchError from '../../elements/fetch-error';
+import ListItem from './list-item';
+import * as actions from '../../../actions/index';
+import * as reducers from '../../../reducers/index';
+import Pagination from '../../elements/pagination';
 
-class ProjectList extends Component {
+class List extends Component {
 
     componentDidMount() {
         this.fetchData();
@@ -33,7 +33,7 @@ class ProjectList extends Component {
             <div className='project-list'>
                 <Title tag='h2'>Project List</Title>
                 {projects.map((project) => (
-                    <ProjectListItem key={project.id} {...project}/>
+                    <ListItem key={project.uuid} {...project}/>
                 ))}
                 <Pagination pagination={pagination}
                             paginate={paginateProjects}/>
@@ -51,6 +51,6 @@ const mapStateToProjectsListProps = (state) => {
     };
 };
 
-ProjectList = connect(mapStateToProjectsListProps, actions)(ProjectList);
+const ProjectList = connect(mapStateToProjectsListProps, actions)(List);
 
 export default ProjectList;

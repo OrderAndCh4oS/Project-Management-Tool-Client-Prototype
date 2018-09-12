@@ -11,21 +11,46 @@ export const fetchProjects = ({params}) => {
     return getAuthorisedFetch('/project/' + params);
 };
 
-export const fetchJobs = ({params}) => {
-    params = params ? '?' + createParams(params) : '';
-    return getAuthorisedFetch('/job/' + params);
-};
-
-export const fetchJob = ({id}) => {
-    return getAuthorisedFetch('/job/' + id + '/');
-};
-
 export const fetchProject = ({id}) => {
     return getAuthorisedFetch('/project/' + id + '/');
 };
 
 export const postProject = ({values}) => {
     return postAuthorisedFetch('/project/', values);
+};
+
+export const fetchCompanies = ({params}) => {
+    params = params ? '?' + createParams(params) : '';
+    return getAuthorisedFetch('/company/' + params);
+};
+
+export const fetchCompany = ({id}) => {
+    return getAuthorisedFetch('/company/' + id + '/');
+};
+
+export const postCompany = ({values}) => {
+    return postAuthorisedFetch('/company/', values);
+};
+
+export const fetchJobs = ({params}) => {
+    params = params ? '?' + createParams(params) : '';
+    return getAuthorisedFetch('/job/' + params);
+};
+
+export const fetchAddressForm = () => {
+    return getAuthorisedFetch('/address-form/');
+};
+
+export const fetchClientForm = () => {
+    return getAuthorisedFetch('/client-form/');
+};
+
+export const fetchCompanyForm = () => {
+    return getAuthorisedFetch('/company-form/');
+};
+
+export const fetchJob = ({id}) => {
+    return getAuthorisedFetch('/job/' + id + '/');
 };
 
 export const paginate = ({url}) => {

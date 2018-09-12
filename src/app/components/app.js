@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
-import {Column, Container, Row} from './elements/structure';
-import {Title} from './elements/typography';
+import { Route, Switch } from 'react-router-dom';
+import { Column, Container, Row } from './elements/structure';
+import { Title } from './elements/typography';
 import LoginPage from './login-page';
-import {userIsAuthenticated, userIsNotAuthenticated} from '../authentication';
+import { userIsAuthenticated, userIsNotAuthenticated } from '../authentication';
 import MainNavigation from './navigation/main-navigation';
 import DashboardPage from './dashboard-page';
-import JobDetail from './job-detail';
-import ProjectDetail from './project-detail';
+import JobDetail from './entities/jobs/detail';
+import ProjectDetail from './entities/projects/detail';
 
 const App = () => (
     <div className="page-wrapper">
@@ -26,8 +26,10 @@ const App = () => (
             <Switch>
                 <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
                 <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
-                <Route exact path="/project/:projectId" component={userIsAuthenticated(ProjectDetail)}/>
-                <Route exact path="/job/:jobId" component={userIsAuthenticated(JobDetail)}/>
+                <Route exact path="/project/:id"
+                       component={userIsAuthenticated(ProjectDetail)}/>
+                <Route exact path="/job/:id"
+                       component={userIsAuthenticated(JobDetail)}/>
             </Switch>
         </div>
     </div>
