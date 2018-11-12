@@ -15,8 +15,8 @@ class Detail extends Component {
     }
 
     fetchData() {
-        const {fetchJob, id} = this.props;
-        fetchJob({id}).then(() => console.log('done!'));
+        const {fetchJob, uuid} = this.props;
+        fetchJob({id: uuid}).then(() => console.log('done!'));
     }
 
     render() {
@@ -45,12 +45,12 @@ class Detail extends Component {
 }
 
 const mapStateToJobsDetailProps = (state, {match}) => {
-    const id = match.params.id || null;
+    const uuid = match.params.uuid || null;
     return {
-        job: reducers.getJob(state, id),
+        job: reducers.getJob(state, uuid),
         isFetching: reducers.getJobIsFetching(state),
         errorMessage: reducers.getJobFetchErrorMessage(state),
-        id,
+        uuid: uuid,
     };
 };
 

@@ -14,8 +14,8 @@ class Detail extends Component {
     }
 
     fetchData() {
-        const {fetchCompany, id} = this.props;
-        fetchCompany({id, params: {with: 'company'}})
+        const {fetchCompany, uuid} = this.props;
+        fetchCompany({id: uuid, params: {with: 'company'}})
             .then(() => console.log('done!'));
     }
 
@@ -31,19 +31,19 @@ class Detail extends Component {
         return (
             <div className={'company-list'}>
                 <Title tag='h2'>{company.name}</Title>
-                <Text>{company.url}</Text>
+                <Text>{company.website}</Text>
             </div>
         );
     }
 }
 
 const mapStateToCompanyListProps = (state, {match}) => {
-    const id = match.params.id || null;
+    const uuid = match.params.uuid || null;
     return {
-        company: reducers.getCompany(state, id),
+        company: reducers.getCompany(state, uuid),
         isFetching: reducers.getCompanyIsFetching(state),
         errorMessage: reducers.getCompanyFetchErrorMessage(state),
-        id,
+        uuid: uuid,
     };
 };
 

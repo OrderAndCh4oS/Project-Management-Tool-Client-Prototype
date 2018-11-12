@@ -22,7 +22,6 @@ class List extends Component {
 
     render() {
         const {companies, errorMessage, isFetching, pagination, paginateCompanies} = this.props;
-        console.log('C3', companies);
         if(isFetching || !companies.length) {
             return <p>Loading...</p>;
         }
@@ -34,7 +33,6 @@ class List extends Component {
             <div className='company-list'>
                 <Title tag='h2'>Company List</Title>
                 {companies.map((company) => {
-                    console.log('C2:', company);
                     return <ListItem key={company.uuid} {...company}/>;
                 })}
                 <Pagination pagination={pagination}

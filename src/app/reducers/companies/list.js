@@ -28,10 +28,24 @@ const list = combineReducers(
 
 export default list;
 
-export const getIds = (state) => state.list.ids;
-export const getPagination = (state) => state.list.pagination;
-export const getIsFetching = (state) => state.list.fetchManyRequest.isFetching;
-export const getFetchErrorMessage = (state) => state.list.fetchManyRequest.errorMessage;
-export const getIsFetchingSingle = (state) => state.list.fetchSingleRequest.isFetching;
-export const getFetchSingleInvalidRequest = (state) => state.list.fetchSingleRequest.invalidRequest;
-export const getFetchSingleErrorMessage = (state) => state.list.fetchSingleRequest.errorMessage;
+export const getIds = (state) =>
+    state.list.ids;
+
+export const getPagination = (state) =>
+    state.list.pagination;
+
+export const getIsFetching = (state) =>
+    state.list.fetchManyRequest.isFetching;
+
+export const getFetchErrorMessage = (state) =>
+    state.list.fetchManyRequest.errorMessage;
+
+export const getIsFetchingSingle = (state) =>
+    state.list.fetchSingleRequest.isFetching;
+
+export const getFetchSingleInvalidRequest = (state) =>
+    state.list.fetchSingleRequest.invalidRequest;
+
+export const getFetchSingleErrorMessage = (state) =>
+    state.list.fetchSingleRequest.errorMessage;
+

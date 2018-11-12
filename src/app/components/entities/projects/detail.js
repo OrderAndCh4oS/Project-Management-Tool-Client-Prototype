@@ -14,8 +14,8 @@ class Detail extends Component {
     }
 
     fetchData() {
-        const {fetchProject, id} = this.props;
-        fetchProject({id, params: {with: 'company'}})
+        const {fetchProject, uuid} = this.props;
+        fetchProject({id: uuid, params: {with: 'company'}})
             .then(() => console.log('done!'));
     }
 
@@ -38,12 +38,12 @@ class Detail extends Component {
 }
 
 const mapStateToProjectListProps = (state, {match}) => {
-    const id = match.params.id || null;
+    const uuid = match.params.uuid || null;
     return {
-        project: reducers.getProject(state, id),
+        project: reducers.getProject(state, uuid),
         isFetching: reducers.getProjectIsFetching(state),
         errorMessage: reducers.getProjectFetchErrorMessage(state),
-        id,
+        uuid: uuid,
     };
 };
 

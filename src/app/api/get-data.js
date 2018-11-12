@@ -1,5 +1,5 @@
 const getData = (apiCall) => {
-    apiCall().then(
+    return apiCall().then(
         response => {
             switch(response.status) {
                 case 200:

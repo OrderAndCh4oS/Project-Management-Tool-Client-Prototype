@@ -13,7 +13,8 @@ const JobListItem = (props) => <div className='list-item job-list-item'>
     <Text>Description: {props.description}</Text>
     <Text>Status: {props.status__title} / Deadline: <Date date={props.deadline}
                                                           format={'Do MMMM YYYY'}/></Text>
-    <LinkButton to={'/job/' + props.id} iconRight={<FontAwesomeIcon
+    <LinkButton
+        to={'/job/' + props.uuid} iconRight={<FontAwesomeIcon
         icon={['far', 'arrow-right']}/>}>View</LinkButton>
 </div>;
 

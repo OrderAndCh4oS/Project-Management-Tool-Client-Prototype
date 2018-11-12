@@ -49,17 +49,40 @@ export const fetchCompanyForm = () => {
     return getAuthorisedFetch('/company-form/');
 };
 
+export const fetchStaffForm = () => {
+    return getAuthorisedFetch('/staff-form/');
+};
+
+export const fetchStatusForm = () => {
+    return getAuthorisedFetch('/status-form/');
+};
+
+export const fetchProjectForm = () => {
+    return getAuthorisedFetch('/project-form/');
+};
+
 export const fetchJob = ({id}) => {
     return getAuthorisedFetch('/job/' + id + '/');
+};
+
+export const postJob = ({values}) => {
+    return postAuthorisedFetch('/job/', values);
 };
 
 export const paginate = ({url}) => {
     return getAuthorisedFetch(url, false);
 };
 
-const getTokenFromLocalStorage = () => localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
-const listValues = (params, key) => Array.isArray(params[key]) ? params[key].join(',') : params[key];
-const createParams = (params) => Object.keys(params).map(key => key + '=' + listValues(params, key)).join('&');
+const getTokenFromLocalStorage = () =>
+    localStorage.getItem('TOKEN') ? localStorage.getItem('TOKEN') : null;
+
+const listValues = (params, key) =>
+    Array.isArray(params[key]) ? params[key].join(',') : params[key];
+
+const createParams = (params) =>
+    Object.keys(params)
+        .map(key => key + '=' + listValues(params, key))
+        .join('&');
 
 const getAuthorisedFetch = function(endpoint, withBase = true) {
     let token = getTokenFromLocalStorage();

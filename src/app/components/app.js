@@ -9,6 +9,7 @@ import MainNavigation from './navigation/main-navigation';
 import DashboardPage from './dashboard-page';
 import JobDetail from './entities/jobs/detail';
 import ProjectDetail from './entities/projects/detail';
+import CompanyDetail from './entities/companies/detail';
 
 const App = () => (
     <div className="page-wrapper">
@@ -26,10 +27,17 @@ const App = () => (
             <Switch>
                 <Route exact path="/login" component={userIsNotAuthenticated(LoginPage)}/>
                 <Route exact path="/" component={userIsAuthenticated(DashboardPage)}/>
-                <Route exact path="/project/:id"
+                <Route
+                    exact
+                    path="/company/:uuid"
+                    component={userIsAuthenticated(CompanyDetail)}
+                />
+                <Route
+                    exact path="/project/:uuid"
                        component={userIsAuthenticated(ProjectDetail)}/>
-                <Route exact path="/job/:id"
-                       component={userIsAuthenticated(JobDetail)}/>
+                <Route
+                    exact path="/job/:uuid"
+                    component={userIsAuthenticated(JobDetail)}/>
             </Switch>
         </div>
     </div>

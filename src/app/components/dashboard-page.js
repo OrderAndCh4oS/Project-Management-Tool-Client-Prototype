@@ -20,13 +20,13 @@ const DashboardPage = () => (
                 <CompanyForm/>
                 <CompanyList/>
             </Column>
-        </Row>
-        <Row>
             <Column span={4}>
                 <ProjectForm/>
                 <ProjectList/>
             </Column>
-            <Column span={8}>
+        </Row>
+        <Row>
+            <Column span={12}>
                 <JobList/>
             </Column>
         </Row>
