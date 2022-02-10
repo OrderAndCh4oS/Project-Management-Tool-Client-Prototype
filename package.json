@@ -32,7 +32,7 @@
     "img-loader": "^3.0.0",
     "install": "^0.12.1",
     "modularscale-sass": "^3.0.5",
-    "node-sass": "^4.5.3",
+    "node-sass": "^7.0.0",
     "process": "^0.11.10",
     "prop-types": "^15.6.1",
     "purify-css": "^1.2.6",
