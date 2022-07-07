@@ -54,7 +54,7 @@
     "@fortawesome/react-fontawesome": "^0.1.0",
     "chart.js": "^1.1.1",
     "formik": "^1.0.1",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "normalizr": "^3.2.4",
     "rc-slider": "^8.6.1",
     "react": "^16.2.0",
